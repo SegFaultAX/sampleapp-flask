@@ -1,4 +1,3 @@
-from operator import itemgetter
 import db
 
 ARTICLES = [
@@ -8,11 +7,9 @@ ARTICLES = [
 
 @db.with_pool
 def seed_articles(conn):
-  sql = """INSERT INTO articles (title, content) VALUES (%s, %s);"""
+  sql = """INSERT INTO articles (title, content) VALUES (%(title)s, %(content)s);"""
   cursor = conn.cursor()
-  itemsfn = itemgetter("title", "content")
-  items = [itemsfn(e) for e in ARTICLES]
-  cursor.executemany(sql, items)
+  cursor.executemany(sql, ARTICLES)
   conn.commit()
 
 SEEDS = [
