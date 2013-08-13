@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for article in articles %}
+    <li><h2>{{ article.title }}</h2>{{ article.content|safe }}
+  {% else %}
+    <li><em>No articles</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
