@@ -1,9 +1,17 @@
 import db
 
+TRUNCATE = ["articles"]
 ARTICLES = [
   { "title": "Foobar1", "content": "This is awesome!" },
   { "title": "Foobar2", "content": "This is neato!" },
 ]
+
+@db.with_pool
+def truncate_tables(conn):
+  cursor = conn.cursor()
+  for table in TRUNCATE:
+    cursor.execute("TRUNCATE TABLE %s" % table)
+  conn.commit()
 
 @db.with_pool
 def seed_articles(conn):
@@ -13,6 +21,7 @@ def seed_articles(conn):
   conn.commit()
 
 SEEDS = [
+  truncate_tables,
   seed_articles,
 ]
 
