@@ -1,5 +1,11 @@
 # Flask Sample App
 
+Small [Flask](http://flask.pocoo.org/) app built in 30 minutes to demonstrate
+psycopg2 connection pools, dead simple database migrations and data seeding.
+
+**Note: This project is for demonstration purposes only and not under active 
+development.**
+
 ## Getting Started
 
 * Install:
